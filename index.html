@@ -6,24 +6,41 @@
 <style>
 
 #container {
-    width:900px;
-    height:900px;
-    overflow:hidden;
     background-color:white;
+    border:solid 1px red;
+    margin:0px;
+}
+
+
+#content {
+    width:900px;
+    height:720px;
+}
+
+
+
+div.label {
+    padding:10px;
+    font-family: Helvetica Neue;
+    font-size: 0.7em;
+    position: absolute;
+    color:#000;
+    -webkit-user-select:none;
+     -moz-user-select:none;
 }
             
+
 #label1 {
-    left:160px;
-    top:165px;
-    width:90px;
-/*    -webkit-transform: rotate(-18deg);
-    -moz-transform: rotate(-18deg);*/
+    left:460px;
+    top:45px;
+/*    -webkit-transform: rotate(9deg);
+    -moz-transform: rotate(9deg);*/
 }
 
 #label2 {
     left:460px;
     top:285px;
-    width:20px;
+    width:120px;
     -webkit-transform: rotate(-5deg);
     -moz-transform: rotate(-5deg);
 }
@@ -31,17 +48,58 @@
 #label3 {
     left:200px;
     top:220px;
-    width:20px;
+    width:120px;
 }
 
-div.label {
-    padding:10px;
-    font-family: Helvetica Neue;
-    font-size: 9px;
-    position: absolute;
-    color:#aaa;
-    -webkit-user-select:none;
-     -moz-user-select:none;
+#label4 {
+    left:670px;
+    top:310px;
+    width:120px;
+}
+
+#label5 {
+    left:160px;
+    top:200px;
+    width:150px;
+}
+
+#label6 {
+    left:200px;
+    top:380px;
+    width:120px;
+}
+
+.zone {
+  position:absolute; border:solid 1px silver; opacity:0.5;
+}
+
+.zone1 {
+  height:47px; width:200px; top:78px; left:415px;background-color: pink;
+}
+.zone2a {
+  height:103px; width:227px; top:126px; left:300px; background-color: lightblue;
+}
+.zone2b {
+  height:15px; width:24px; top:110px; left:390px; background-color: lightgreen;
+}
+.zone3 {
+  height:103px; width:75px; top:126px; left:528px; background-color: silver;
+}
+.zone4a {
+  height:150px; width:100px; top:150px; left:200px; background-color: yellow; z-index: 100;
+}
+.zone4b {
+  height:85px; width:175px; top:230px; left:385px; background-color: yellow; z-index: 100;
+}
+.zone5 {
+  height: 130px;
+  width: 400px;
+  top: 230px;
+  left: 385px;
+  background-color: pink;
+}
+.zone6 {
+  height:310px; width:284px; top:230px; left:100px; background-color: tan;
 }
 
 div.imagebox {
@@ -85,19 +143,32 @@ div.label:hover {
 <script type="text/javascript" src="jquery.zoomooz.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-      $('#container').click(function(evt) {
+      // $('#container').click(function(evt) {
+      //     evt.stopPropagation();
+      //     $(this).zoomTo({duration:500, targetsize:0.2});
+      //     $("#imagebox1").hide()
+      // });
+      // $('#label1').click(function(evt) {
+      //     evt.stopPropagation();
+      //     $(this).zoomTo({duration:500, targetsize:0.2, closeclick: true});
+      //     $("#imagebox1").show()
+      // });
+      $('.zone1').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
+      $('.zone2a').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
+      $('.zone2b').click(function(evt) {evt.stopPropagation();$(".zone2a").click();});      
+      $('.zone3').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
+      $('.zone4a').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
+      $('.zone4b').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
+      $('.zone5').zoomTarget({duration:500, targetsize:1, closeclick: true});
+      $('.zone6').zoomTarget({duration:500, targetsize:0.9, closeclick: true});
+          
+      $('#omr1').click(function(evt) {
           evt.stopPropagation();
-          $(this).zoomTo({duration:500, targetsize:1.0});
-          $("#imagebox1").hide()
-      });
-      $('#label1').click(function(evt) {
-          evt.stopPropagation();
-          $(this).zoomTo({duration:500, targetsize:0.2});
+          $(this).zoomTo({duration:500, targetsize:0.2, closeclick: true});
           $("#imagebox1").show()
-      });
-      $('#label2').click(function(evt) {
+      });      
+      $('#label5').click(function(evt) {
           evt.stopPropagation();
-          $(this).zoomTo({duration:500, targetsize:0.2});
           $("#imagebox1").show()
       });
       $('#label3').click(function(evt) {
@@ -105,38 +176,82 @@ div.label:hover {
           $("#imagebox2").toggle()
       });
 
-      // $("#P_och_streck").click(function(evt) {
-      //     evt.stopPropagation();
-      //     console.log("zzz");
+      $('#etapp-link-5').click(function(evt) {
+          evt.stopPropagation();
+          $("#label5").click();
+      });
 
-      // }); 
+      $('#etapp-link-2').click(function(evt) {
+          evt.stopPropagation();
+          $("#label2").click();
+      });
 
-      // $("#P_och_streck").hide();
+      $('#etapp-link-3').click(function(evt) {
+          evt.stopPropagation();
+          $("#label3").click();
+      });
+
+      $('#etapp-link-4').click(function(evt) {
+          evt.stopPropagation();
+          $("#label4").click();
+      });
+
+      $('#etapp-link-5').click(function(evt) {
+          evt.stopPropagation();
+          $("#label5").click();
+      });
+
+      $('#etapp-link-6').click(function(evt) {
+          evt.stopPropagation();
+          $("#label6").click();
+      });
   });
 </script>
+
 </head>
 
 <body>
-     <div class="imagebox" id="imagebox1" style="border:solid 1px red; "><img src="kajhusen.jpg"/>
+
+      <div class="imagebox" id="imagebox1" style="border:solid 1px red; "><img src="kajhusen.jpg"/>
           Det första bostadsprojekt på Kvarnholmen är JM:s Kajhusen med läge direkt på norra kajen. Kajhusen har en modern arkitektur men för att husen ska smälta in i den tongivande bruksmiljön har arkitekt, Johan Nyrén (Nyréns Arkitektkontor), valt en rustik fasad i tegel och puts....
      </div>
      <div class="imagebox" id="imagebox2" style="border:solid 1px red; "><img src="kvarnentrekronor.jpg"/></div>
      
      <div id="container">
-          hhdishiosdhvioshdvoih
-          <div id="content">
-               <object class="tree" data="karta.utanomr.svg" width="900" height="900" type="image/svg+xml" >
-                   <embed class="tree" src="karta.utanomr.svg" width="900" height="900" type="image/svg+xml" />
-               </object>
-               <div class="label" id="label1">Nordvästra kajområdet - etapp 5</div>
-               <div class="label" id="label3">ZZZ</div>
-               <div class="label" id="label2">
-                    2
-               </div>
-          </div>
-     </div>
+          <div id="content" style="border:dotted 1px green">
+              <div class="zone zone1" style=""></div>
+              <div class="zone zone2 zone2a" style=""></div>
+              <div class="zone zone2 zone2b" style=""></div>
+              <div class="zone zone3" style=""></div>
+              <div class="zone zone4 zone4a" style=""></div>
+              <div class="zone zone4 zone4b" style=""></div>
+              <div class="zone zone5" style=""></div>
+              <div class="zone zone6" style=""></div>
+               <div class="label" id="label1">Norra kajområdet - etapp 1</div>
+               <div class="label" id="label2">Centrala kvarnområdet - etapp 2</div>
+               <div class="label" id="label3">Östra kvarnområdet - etapp 3</div>
+               <div class="label" id="label4">Södra kvarnområdet - etapp 4</div>
+               <div class="label" id="label5">Nordvästra kajområdet - Etapp 5</div>
+               <div class="label" id="label6">Hästholmssundet och Gäddviken - etapp 6</div>
+               <style>
+               .etapp-link {position:absolute; top: 18px; left:23px; width: 57px;border:solid 1px tan; background-color:silver; z-index:300; font-family: arial; padding:5px; font-size: 0.6em}
+               </style>
+               <div class="etapp-link" id="etapp-link-1" style="top:18px;">Etapp 1</div>
+               <div class="etapp-link" id="etapp-link-2" style="top:44px;">Etapp 2</div>
+               <div class="etapp-link" id="etapp-link-3" style="top:70px;">Etapp 3</div>
+               <div class="etapp-link" id="etapp-link-4" style="top:97px;">Etapp 4</div>
+               <div class="etapp-link" id="etapp-link-5" style="top:125px;">Etapp 5</div>
+               <div class="etapp-link" id="etapp-link-6" style="top:153px;">Etapp 6</div>
 
-     <!-- <object data="karta.utanomr.svg" type="image/svg+xml" width="900" height="900"></object> -->
+               <object id="karta" data="kvarnholmen.svg" type="image/svg+xml" style="width:900px; height:720px; margin-top:0px;"/>
+
+
+          </div>
+          
+
+     </div>
+      
+     
 
 
 </body>
