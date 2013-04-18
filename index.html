@@ -70,44 +70,51 @@ div.label {
 }
 
 .zone {
-  position:absolute; border:solid 1px silver; opacity:0.5;
+  position:absolute; opacity:0.5;z-index:50;
 }
 
+.zone0 {
+  height:720px; width:900px; top:0px; left:0px; z-index:25;
+}
 .zone1 {
-  height:47px; width:200px; top:78px; left:415px;background-color: pink;
+  height:47px; width:200px; top:78px; left:415px;;
 }
 .zone2a {
-  height:103px; width:227px; top:126px; left:300px; background-color: lightblue;
+  height:103px; width:227px; top:126px; left:300px;
 }
 .zone2b {
-  height:15px; width:24px; top:110px; left:390px; background-color: lightgreen;
+  height:15px; width:24px; top:110px; left:390px;
 }
 .zone3 {
-  height:103px; width:75px; top:126px; left:528px; background-color: silver;
+  height:103px; width:75px; top:126px; left:528px;
 }
 .zone4a {
-  height:150px; width:100px; top:150px; left:200px; background-color: yellow; z-index: 100;
+  height:150px; width:100px; top:150px; left:200px; z-index: 100;
 }
 .zone4b {
-  height:85px; width:175px; top:230px; left:385px; background-color: yellow; z-index: 100;
+  height:85px; width:175px; top:230px; left:385px; z-index: 100;
 }
-.zone5 {
-  height: 130px;
-  width: 400px;
-  top: 230px;
-  left: 385px;
-  background-color: pink;
+.zone5a {
+  height: 40px;
+  width: 170px;
+  top: 320px;
+  left: 400px;
+}
+.zone5b {
+  height: 160px;
+  width: 240px;
+  top: 210px;
+  left: 570px;
 }
 .zone6 {
-  height:310px; width:284px; top:230px; left:100px; background-color: tan;
+  height:310px; width:284px; top:230px; left:100px;
 }
 
 div.imagebox {
     position: absolute;
     z-index:200;
-    top:100px;
-    left:100px;
-    font-size:7px;
+    font-size:3px;
+    font-family: arial;
     width:80px;
     padding:0.5em;
     background-color: white;
@@ -116,7 +123,11 @@ div.imagebox {
      -moz-user-select:none;
 }
 div.imagebox img{
-     height:100px;
+     height:40px;
+     float:right;
+     margin-top:2px;
+     margin-left:4px;
+     margin-bottom:4px;
 }
 
 div.label:hover {
@@ -136,6 +147,8 @@ div.label:hover {
     margin-right:auto;
     width:900px;
 }
+
+
 </style>
 <title>wysihtml5 - Simple Demo</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -145,65 +158,59 @@ div.label:hover {
   $(document).ready(function() {
       // $('#container').click(function(evt) {
       //     evt.stopPropagation();
-      //     $(this).zoomTo({duration:500, targetsize:0.2});
-      //     $("#imagebox1").hide()
+      //     $(".imagebox").hide()
       // });
-      // $('#label1').click(function(evt) {
-      //     evt.stopPropagation();
-      //     $(this).zoomTo({duration:500, targetsize:0.2, closeclick: true});
-      //     $("#imagebox1").show()
-      // });
-      $('.zone1').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
+
+      $('.zone0').zoomTo({duration:500, targetsize:1});
+      $('.zone1').zoomTarget({duration:500, targetsize:0.6, closeclick: true});
       $('.zone2a').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
       $('.zone2b').click(function(evt) {evt.stopPropagation();$(".zone2a").click();});      
       $('.zone3').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
       $('.zone4a').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
       $('.zone4b').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
-      $('.zone5').zoomTarget({duration:500, targetsize:1, closeclick: true});
-      $('.zone6').zoomTarget({duration:500, targetsize:0.9, closeclick: true});
-          
-      $('#omr1').click(function(evt) {
+      $('.zone5b').zoomTarget({duration:500, targetsize:0.8, closeclick: true});
+      $('.zone5a').click(function(evt) {evt.stopPropagation();$(".zone5b").click();});  
+      $('.zone6').zoomTarget({duration:500, targetsize:1, closeclick: true});
+
+      $('.zone1').click(function(evt) {
+          $(".imagebox").hide();
           evt.stopPropagation();
-          $(this).zoomTo({duration:500, targetsize:0.2, closeclick: true});
-          $("#imagebox1").show()
-      });      
-      $('#label5').click(function(evt) {
-          evt.stopPropagation();
-          $("#imagebox1").show()
+          $("#zone1-imagebox1").show();
+          // $("#zone1-imagebox2").show();
+          // $("#zone1-imagebox3").show();
       });
-      $('#label3').click(function(evt) {
-          evt.stopPropagation();
-          $("#imagebox2").toggle()
+      $('.zone0').click(function(evt) {
+          $(".imagebox").hide();
       });
 
-      $('#etapp-link-5').click(function(evt) {
+      $('#etapp-link-1').click(function(evt) {
           evt.stopPropagation();
-          $("#label5").click();
+          $(".zone1").click();
       });
 
       $('#etapp-link-2').click(function(evt) {
           evt.stopPropagation();
-          $("#label2").click();
+          $(".zone2").click();
       });
 
       $('#etapp-link-3').click(function(evt) {
           evt.stopPropagation();
-          $("#label3").click();
+          $(".zone3").click();
       });
 
       $('#etapp-link-4').click(function(evt) {
           evt.stopPropagation();
-          $("#label4").click();
+          $(".zone4").click();
       });
 
       $('#etapp-link-5').click(function(evt) {
           evt.stopPropagation();
-          $("#label5").click();
+          $(".zone5").click();
       });
 
       $('#etapp-link-6').click(function(evt) {
           evt.stopPropagation();
-          $("#label6").click();
+          $(".zone6").click();
       });
   });
 </script>
@@ -211,37 +218,73 @@ div.label:hover {
 </head>
 
 <body>
+      <h1>Kvarnholmen</h1>
 
-      <div class="imagebox" id="imagebox1" style="border:solid 1px red; "><img src="kajhusen.jpg"/>
-          Det första bostadsprojekt på Kvarnholmen är JM:s Kajhusen med läge direkt på norra kajen. Kajhusen har en modern arkitektur men för att husen ska smälta in i den tongivande bruksmiljön har arkitekt, Johan Nyrén (Nyréns Arkitektkontor), valt en rustik fasad i tegel och puts....
-     </div>
      <div class="imagebox" id="imagebox2" style="border:solid 1px red; "><img src="kvarnentrekronor.jpg"/></div>
      
      <div id="container">
           <div id="content" style="border:dotted 1px green">
+
+              <div class="zone zone0"></div>
               <div class="zone zone1" style=""></div>
+
               <div class="zone zone2 zone2a" style=""></div>
               <div class="zone zone2 zone2b" style=""></div>
               <div class="zone zone3" style=""></div>
               <div class="zone zone4 zone4a" style=""></div>
               <div class="zone zone4 zone4b" style=""></div>
-              <div class="zone zone5" style=""></div>
+              <div class="zone zone5 zone5a" style=""></div>
+              <div class="zone zone5 zone5b" style=""></div>
               <div class="zone zone6" style=""></div>
-               <div class="label" id="label1">Norra kajområdet - etapp 1</div>
-               <div class="label" id="label2">Centrala kvarnområdet - etapp 2</div>
-               <div class="label" id="label3">Östra kvarnområdet - etapp 3</div>
-               <div class="label" id="label4">Södra kvarnområdet - etapp 4</div>
-               <div class="label" id="label5">Nordvästra kajområdet - Etapp 5</div>
-               <div class="label" id="label6">Hästholmssundet och Gäddviken - etapp 6</div>
+
+              <div class="imagebox" id="zone1-imagebox1" style="border:solid 1px #66ADAD; top:40px; left:570px;">
+                <img src="kajhusen.jpg"/>
+                  Det första bostadsprojekt på Kvarnholmen är JM:s Kajhusen med läge direkt på norra kajen. Kajhusen har en modern arkitektur men för att husen ska smälta in i den tongivande bruksmiljön har arkitekt, Johan Nyrén (Nyréns Arkitektkontor), valt en rustik fasad i tegel och puts....<br/>
+                  <a href="javascript:alert('Läs ner på en annan sida.');">Läs mer</a>
+              </div>              
+              <div class="imagebox" id="zone1-imagebox2" style="border:solid 1px #66ADAD; top:30px; left:350px;">
+                <img src="kajhusen.jpg"/>
+                  Det första bostadsprojekt på Kvarnholmen är JM:s Kajhusen med läge direkt på norra kajen. Kajhusen har en modern arkitektur men för att husen ska smälta in i den tongivande bruksmiljön har arkitekt, Johan Nyrén (Nyréns Arkitektkontor), valt en rustik fasad i tegel och puts....<br/>
+                  <a href="javascript:alert('Läs ner på en annan sida.');">Läs mer</a>
+              </div>              
+              <div class="imagebox" id="zone1-imagebox3" style="width:100px; border:solid 1px #66ADAD; top:20px; left:450px;">
+                <img src="kvarnentrekronor.jpg"/>
+                I den pampiga gamla Qvarnen Tre Kronor utvecklar Riksbyggen ca 160 lägenheter. Riksbyggen kommer att förädla de fastigheter som vetter mot hamninloppet till moderna lägenheter med klassiska arkitektoniska inslag. <br/>
+                <a href="javascript:alert('Läs ner på en annan sida.');">Läs mer</a>
+              </div>              
                <style>
-               .etapp-link {position:absolute; top: 18px; left:23px; width: 57px;border:solid 1px tan; background-color:silver; z-index:300; font-family: arial; padding:5px; font-size: 0.6em}
+               table#index {
+                position:absolute; top:5px;left:14px; 
+                border-collapse: collapse;
+                z-index:300; 
+                width:220px;
+                font-family: arial; 
+                font-size: 0.6em;
+                cursor: pointer;
+              }
+
+              table#index td{
+                padding:0.3em;
+                margin:10px;
+                margin-bottom:10px;                
+                border:0;
+              }
+              table#index td.index-nr{
+                font-size: 1.5em;
+                background-color: auto;
+              }
+
                </style>
-               <div class="etapp-link" id="etapp-link-1" style="top:18px;">Etapp 1</div>
-               <div class="etapp-link" id="etapp-link-2" style="top:44px;">Etapp 2</div>
-               <div class="etapp-link" id="etapp-link-3" style="top:70px;">Etapp 3</div>
-               <div class="etapp-link" id="etapp-link-4" style="top:97px;">Etapp 4</div>
-               <div class="etapp-link" id="etapp-link-5" style="top:125px;">Etapp 5</div>
-               <div class="etapp-link" id="etapp-link-6" style="top:153px;">Etapp 6</div>
+
+              <table id="index">
+                <tr id="etapp-link-1"> <td style="background-color: #66ADAD;" class="index-nr">&nbsp;</td> <td><strong>Etapp&nbsp;1</strong><br/>Norra kajområdet</td> </tr>
+                <tr id="etapp-link-2"> <td style="background-color: #F5A055;" class="index-nr">&nbsp;</td> <td>Etapp&nbsp;2<br/>Centrala kvarnområdet</td> </tr>
+                <tr id="etapp-link-3"> <td style="background-color: #E84344;" class="index-nr">&nbsp;</td> <td>Etapp&nbsp;2<br/>Östra kvarnområdet</td> </tr>
+                <tr id="etapp-link-4"> <td style="background-color: #B089BE;" class="index-nr">&nbsp;</td> <td>Etapp&nbsp;2<br/>Södra kvarnområdet</td> </tr>
+                <tr id="etapp-link-5"> <td style="background-color: #004D9A;" class="index-nr">&nbsp;</td> <td>Etapp&nbsp;2<br/>Nordvästra kajområdet/Platån</td> </tr>
+                <tr id="etapp-link-6"> <td style="background-color: #EDDB61;" class="index-nr">&nbsp;</td> <td>Etapp&nbsp;2<br/>Hästholmssundet/Gäddviken</td> </tr>
+
+              </table>  
 
                <object id="karta" data="kvarnholmen.svg" type="image/svg+xml" style="width:900px; height:720px; margin-top:0px;"/>
 
